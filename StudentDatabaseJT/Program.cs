@@ -8,7 +8,7 @@
 
             while (start == true)
             {
-                //database Name (8)
+                //database Name (x8)
                 string[] names = { "Jack", "Lack", "Back", "Jill", "Gill", "Bill", "Phil", "Shill" };
 
                 //database Hometown
@@ -18,12 +18,35 @@
                 string[] food = { "Apples", "Oranges", "Bannana", "Pickles", "Gumbo", "Ratatouille", "Quiche", "Lasagna" };
 
 
-                //PrintArray(names); //print list/array of student's names
-                string input = PromptUserInput("Hello. Please input the number of the student you would like to know more about. 1-8:"); //prompt user input for student #
+                
+                Console.WriteLine("Hello. Would you like to see the list of all students? Y/N"); // asking if user would like to see table of names
+                string userinput3 = Console.ReadLine().ToLower();
 
-                int userinput = (Convert.ToInt32(input) -1);    
+                while(true) //potential method
+                {
+                    if (userinput3 == "y")
+                    {
+                        PrintArray(names); //prints names
+                        break;
+                    }
+                    else if (userinput3 == "n") //moves on below
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("error, invalid input. Restarting"); //reask question
+                        return; 
+                    }
+                }
 
-                if (userinput < 0 || userinput > 7)
+                Console.WriteLine();
+
+                string input = PromptUserInput("Please input the number of the student you would like to know more about. 1-8:"); //prompt user input for student #
+
+                int userinput = (Convert.ToInt32(input) -1);     // converting string to int32
+
+                if (userinput < 0 || userinput > 7) // if userinput is not within range
                 {
                     Console.WriteLine("Invald input, restarting");
                     Console.WriteLine();
@@ -39,69 +62,21 @@
                     Console.WriteLine("Would you like to know the student's hometown or favorite food?");
                     string userinput2 = Console.ReadLine().ToLower();
 
-                    while (true)
+                    while (true) //spot for potential method
                     {
                         if (userinput2 == "hometown" || userinput2 == "home" || userinput2 == "town")
                         {
                             Console.WriteLine(hometown[userinput]);
-                            Console.WriteLine();
-
-                            while (true)
-                            {
-                                Console.WriteLine("Would you like to see the list of all students? Y/N");
-                                string userinput3 = Console.ReadLine().ToLower();
-                                
-
-                                if (userinput3 == "y")
-                                {
-                                    Console.WriteLine();
-                                    PrintArray(names);
-                                    break;
-
-                                }
-                                else if (userinput3 == "n")
-                                {
-                                    Console.WriteLine();
-                                    break;
-                                }
-                                else
-                                {
-                                    Console.WriteLine();
-                                    Console.WriteLine("error, invalid input.");
-                                    break;
-                                }
-                                
-                            }
-
+                            Console.WriteLine();     
                         }
                         else if (userinput2 == "favorite food" || userinput2 == "food" || userinput2 == "favorite")
                         {
                             Console.WriteLine(food[userinput]);
                             Console.WriteLine();
-                            while (true)
-                            {
-                                Console.WriteLine("Would you like to see the list of all students? Y/N");
-                                string userinput3 = Console.ReadLine().ToLower();
-
-                                if (userinput3 == "y")
-                                {
-                                    PrintArray(names);
-                                    break;
-                                }
-                                else if (userinput3 == "n")
-                                {
-                                    break;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("error, invalid input.");
-                                    break;
-                                }
-                            }
                         }
                         else
                         {
-                            Console.WriteLine("Sorry, invalid choice, try again.");
+                            Console.WriteLine("Sorry, invalid choice, restarting.");
                             break;
                         }
                         break;
@@ -155,3 +130,5 @@
         
     }
 }
+
+//use for loop for allowing user to search by name.
